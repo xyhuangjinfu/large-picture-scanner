@@ -1,6 +1,6 @@
 package com.shanbay.lps;
 
-import com.android.build.gradle.AppExtension;
+import com.android.build.gradle.BaseExtension;
 import com.android.build.gradle.api.AndroidSourceSet;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.TaskAction;
@@ -16,9 +16,9 @@ public class ScanTask extends DefaultTask {
     public void scan() {
         mLargePictureFinder = new LargePictureFinder(getProject());
 
-        AppExtension appExtension = getProject().getExtensions().findByType(AppExtension.class);
+        BaseExtension baseExtension = getProject().getExtensions().findByType(BaseExtension.class);
 
-        for (AndroidSourceSet sourceSet : appExtension.getSourceSets()) {
+        for (AndroidSourceSet sourceSet : baseExtension.getSourceSets()) {
             Set<File> resSourceDirs = sourceSet.getRes().getSrcDirs();
 
             if (resSourceDirs.isEmpty()) {
